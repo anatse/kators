@@ -1,0 +1,40 @@
+[package]
+name = "kators"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+# Errors
+anyhow = "*"
+thiserror = "*"
+# Configuration
+sled = "*"
+# GUI
+iced = { git = "https://github.com/iced-rs/iced.git", features = ["image", "debug"], branch = "master" }
+iced_native = { git = "https://github.com/iced-rs/iced.git", package = "iced_native", branch = "master" }
+iced_lazy = { git = "https://github.com/iced-rs/iced.git", package = "iced_lazy", branch = "master" }
+#orbtk = "0.3.1-alpha3" #{ git = "https://github.com/redox-os/orbtk.git", branch = "develop" }
+#orbtk-tree = "0.3.1-alpha3"
+#gtk = { version = "0.3.0", features = ["v3_22"] }
+#druid = { git = "https://github.com/linebender/druid", features = ["im"], rev = "2f5beb8faba648c170a485b8d6a00d0d991a1737" }
+#druid-shell = { git = "https://github.com/linebender/druid.git", package = "druid-shell" }
+#druid-widget-nursery = { git = "https://github.com/linebender/druid-widget-nursery" }
+# Kafka
+rdkafka = { version = "*", features = ["ssl"] }
+# Serialize/deserialize
+serde = { version = "*", features = ["derive"] }
+serde_derive = "*"
+bson = "*"
+# Crypting
+openssl = { version = "*", features = ["vendored"]}
+#threefish = "*"
+#blowfish = "*"
+#aes = "*"
+#block-modes = "*"
+#hex-literal = "*"
+# Async
+tokio = "*"
+# Logging
+log = "*"
+env_logger = "*"
