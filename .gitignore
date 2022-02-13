@@ -1,6 +1,5 @@
 **/target
 **/*.iml
 **/.idea
-/my_db/
-/Cargo.lock
-/my_test_db/
+/my_*/
+/preferences/
