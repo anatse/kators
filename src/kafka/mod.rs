@@ -260,9 +260,9 @@ mod test {
     fn create_ks() -> KafkaServer {
         KafkaServer::new(
             "my_server".to_string(),
-            "10.53.91.21:9093".to_string(),
+            "localhost:9093".to_string(),
             false,
-            Some("/Users/sbt-sementsov-av/projects/certs/kafka.p12".to_string()),
+            Some("kafka.p12".to_string()),
             Some(Password::new("123456").unwrap()),
             "SSL".to_string(),
             100,
