@@ -16,18 +16,18 @@ jobs:
 
     steps:
     - run: cd /
-    - run: apt-get update && apt-get upgrade -y && apt-get install -y ca-certificates musl-dev musl-tools file nano git
-    - run: apt-get install -y  zlib1g-dev cmake make clang curl pkgconf linux-headers-amd64 xutils-dev libpq-dev libssl-dev librdkafka-dev 
-    - run: ln -s /usr/include/x86_64-linux-gnu/asm /usr/include/x86_64-linux-musl/asm && ln -s /usr/include/asm-generic /usr/include/x86_64-linux-musl/asm-generic
-    - run: ln -s /usr/include/linux /usr/include/x86_64-linux-musl/linux
-    - run: mkdir /musl
-    - run: wget https://github.com/openssl/openssl/archive/OpenSSL_1_1_1j.tar.gz
-    - run: tar zxvf OpenSSL_1_1_1j.tar.gz
+    - run: sudo apt-get update && apt-get upgrade -y && apt-get install -y ca-certificates musl-dev musl-tools file nano git
+    - run: sudo apt-get install -y  zlib1g-dev cmake make clang curl pkgconf linux-headers-amd64 xutils-dev libpq-dev libssl-dev librdkafka-dev 
+    - run: sudo ln -s /usr/include/x86_64-linux-gnu/asm /usr/include/x86_64-linux-musl/asm && ln -s /usr/include/asm-generic /usr/include/x86_64-linux-musl/asm-generic
+    - run: sudo ln -s /usr/include/linux /usr/include/x86_64-linux-musl/linux
+    - run: sudo mkdir /musl
+    - run: sudo wget https://github.com/openssl/openssl/archive/OpenSSL_1_1_1j.tar.gz
+    - run: sudo tar zxvf OpenSSL_1_1_1j.tar.gz
     - run: CC="musl-gcc -fPIE -pie" ./Configure no-shared no-async --prefix=/musl --openssldir=/musl/ssl linux-x86_64
     - run: cd openssl-OpenSSL_1_1_1j/
-    - run: make depend
-    - run: make -j$(nproc)
-    - run: make install
+    - run: sudo make depend
+    - run: sudo make -j$(nproc)
+    - run: sudo make install
     - uses: actions/checkout@v2
     - name: Build
       run: cargo build --verbose
