@@ -26,7 +26,7 @@ jobs:
     - run: sudo mkdir /musl
     - name: Downloads OpenSSL
       run: sudo wget https://github.com/openssl/openssl/archive/OpenSSL_1_1_1j.tar.gz
-    - name: EXtract OpenSSL
+    - name: Extract OpenSSL
       working-directory: openssl-OpenSSL_1_1_1j
       run: sudo tar zxvf OpenSSL_1_1_1j.tar.gz
     - name: Configure OpenSSL
@@ -42,7 +42,7 @@ jobs:
       working-directory: openssl-OpenSSL_1_1_1j
       run: sudo make install
     - name: Fetch from git
-    - uses: actions/checkout@v2
+      uses: actions/checkout@v2
     - name: Build
       run: cargo build --verbose
     - name: Run tests
