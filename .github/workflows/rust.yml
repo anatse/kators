@@ -17,9 +17,10 @@ jobs:
     steps:
     - run: cd /
     - run: sudo apt-get update
-    - run: sudo apt-get upgrade -y 
+    - run: sudo apt-get upgrade -y
+    - run: sudo apt install linux-headers-$(uname -r)
     - run: sudo apt-get install -y ca-certificates musl-dev musl-tools file nano git
-    - run: sudo apt-get install -y  zlib1g-dev cmake make clang curl pkgconf linux-headers-amd64 xutils-dev libpq-dev libssl-dev librdkafka-dev 
+    - run: sudo apt-get install -y zlib1g-dev cmake make clang curl pkgconf xutils-dev libpq-dev libssl-dev librdkafka-dev 
     - run: sudo ln -s /usr/include/x86_64-linux-gnu/asm /usr/include/x86_64-linux-musl/asm && ln -s /usr/include/asm-generic /usr/include/x86_64-linux-musl/asm-generic
     - run: sudo ln -s /usr/include/linux /usr/include/x86_64-linux-musl/linux
     - run: sudo mkdir /musl
