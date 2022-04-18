@@ -27,8 +27,8 @@ jobs:
     - run: sudo mkdir /musl
     - run: sudo wget https://github.com/openssl/openssl/archive/OpenSSL_1_1_1j.tar.gz
     - run: sudo tar zxvf OpenSSL_1_1_1j.tar.gz
-    - run: CC="musl-gcc -fPIE -pie" ./Configure no-shared no-async --prefix=/musl --openssldir=/musl/ssl linux-x86_64
     - run: cd openssl-OpenSSL_1_1_1j/
+    - run: CC="musl-gcc -fPIE -pie" ./Configure no-shared no-async --prefix=/musl --openssldir=/musl/ssl linux-x86_64
     - run: sudo make depend
     - run: sudo make -j$(nproc)
     - run: sudo make install
