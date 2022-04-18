@@ -26,6 +26,7 @@ jobs:
     - run: sudo ln -s /usr/include/linux /usr/include/x86_64-linux-musl/linux
     - run: sudo mkdir /musl
     - run: cd /musl
+    - run: pwd
     - run: sudo wget https://github.com/openssl/openssl/archive/OpenSSL_1_1_1j.tar.gz
     - run: sudo tar zxvf OpenSSL_1_1_1j.tar.gz
     - run: cd /musl/openssl-OpenSSL_1_1_1j/
