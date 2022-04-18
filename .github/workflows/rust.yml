@@ -30,7 +30,7 @@ jobs:
       run: sudo tar zxvf OpenSSL_1_1_1j.tar.gz
     - name: Configure OpenSSL
       working-directory: openssl-OpenSSL_1_1_1j
-      run: CC="musl-gcc -fPIE -pie" /home/runner/work/kators/kators/Configure no-shared no-async --prefix=/musl --openssldir=/musl/ssl linux-x86_64
+      run: CC="musl-gcc -fPIE -pie" ./Configure no-shared no-async --prefix=/musl --openssldir=/musl/ssl linux-x86_64
     - name: Make depend OpenSSL
       working-directory: openssl-OpenSSL_1_1_1j
       run: sudo make depend
