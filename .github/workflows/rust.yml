@@ -24,13 +24,24 @@ jobs:
     - run: sudo ln -s /usr/include/asm-generic /usr/include/x86_64-linux-musl/asm-generic
     - run: sudo ln -s /usr/include/linux /usr/include/x86_64-linux-musl/linux
     - run: sudo mkdir /musl
-    - run: pwd
-    - run: sudo wget https://github.com/openssl/openssl/archive/OpenSSL_1_1_1j.tar.gz
-    - run: sudo tar zxvf OpenSSL_1_1_1j.tar.gz
-    - run: CC="musl-gcc -fPIE -pie" /home/runner/work/kators/kators/Configure no-shared no-async --prefix=/musl --openssldir=/musl/ssl linux-x86_64
-    - run: sudo make depend
-    - run: sudo make -j$(nproc)
-    - run: sudo make install
+    - name: Downloads OpenSSL
+      run: sudo wget https://github.com/openssl/openssl/archive/OpenSSL_1_1_1j.tar.gz
+    - name: EXtract OpenSSL
+      working-directory: openssl-OpenSSL_1_1_1j
+      run: sudo tar zxvf OpenSSL_1_1_1j.tar.gz
+    - name: Configure OpenSSL
+      working-directory: openssl-OpenSSL_1_1_1j
+      run: CC="musl-gcc -fPIE -pie" /home/runner/work/kators/kators/Configure no-shared no-async --prefix=/musl --openssldir=/musl/ssl linux-x86_64
+    - name: Make depend OpenSSL
+      working-directory: openssl-OpenSSL_1_1_1j
+      run: sudo make depend
+    - name: Make OpenSSL
+      working-directory: openssl-OpenSSL_1_1_1j
+      run: sudo make -j$(nproc)
+    - name: Install OpenSSL
+      working-directory: openssl-OpenSSL_1_1_1j
+      run: sudo make install
+    - name: Fetch from git
     - uses: actions/checkout@v2
     - name: Build
       run: cargo build --verbose
