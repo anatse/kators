@@ -25,24 +25,24 @@ jobs:
     - run: sudo ln -s /usr/include/linux /usr/include/x86_64-linux-musl/linux
     - run: sudo mkdir /musl
     - name: Downloads OpenSSL
-      run: sudo wget https://github.com/openssl/openssl/archive/OpenSSL_1_1_1j.tar.gz
+      run: wget https://github.com/openssl/openssl/archive/OpenSSL_1_1_1n.tar.gz
     - name: Extract OpenSSL
-      run: sudo tar zxvf OpenSSL_1_1_1j.tar.gz
+      run: tar zxvf OpenSSL_1_1_1n.tar.gz
     - name: Configure OpenSSL
-      working-directory: openssl-OpenSSL_1_1_1j
+      working-directory: openssl-OpenSSL_1_1_1n
       run: sudo CC="musl-gcc -fPIE -pie" ./Configure no-shared no-async --prefix=/musl --openssldir=/musl/ssl linux-x86_64
     - name: Make depend OpenSSL
-      working-directory: openssl-OpenSSL_1_1_1j
+      working-directory: openssl-OpenSSL_1_1_1n
       run: sudo make depend
     - name: Make OpenSSL
-      working-directory: openssl-OpenSSL_1_1_1j
+      working-directory: openssl-OpenSSL_1_1_1n
       run: sudo make -j$(nproc)
     - name: Install OpenSSL
-      working-directory: openssl-OpenSSL_1_1_1j
+      working-directory: openssl-OpenSSL_1_1_1n
       run: sudo make install
     - name: Fetch from git
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Build
-      run: sudo cargo build --verbose
+      run: cargo build --verbose
     - name: Run tests
-      run: sudo cargo test --verbose
+      run: cargo test --verbose
