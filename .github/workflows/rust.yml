@@ -15,7 +15,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - run: cd /
     - run: sudo apt-get update
     - run: sudo apt-get upgrade -y
     - run: sudo apt install linux-headers-$(uname -r)
@@ -25,13 +24,10 @@ jobs:
     - run: sudo ln -s /usr/include/asm-generic /usr/include/x86_64-linux-musl/asm-generic
     - run: sudo ln -s /usr/include/linux /usr/include/x86_64-linux-musl/linux
     - run: sudo mkdir /musl
-    - run: cd /musl
     - run: pwd
     - run: sudo wget https://github.com/openssl/openssl/archive/OpenSSL_1_1_1j.tar.gz
     - run: sudo tar zxvf OpenSSL_1_1_1j.tar.gz
-    - run: cd /musl/openssl-OpenSSL_1_1_1j/
-    - run: pwd
-    - run: CC="musl-gcc -fPIE -pie" ./Configure no-shared no-async --prefix=/musl --openssldir=/musl/ssl linux-x86_64
+    - run: CC="musl-gcc -fPIE -pie" /home/runner/work/kators/kators/Configure no-shared no-async --prefix=/musl --openssldir=/musl/ssl linux-x86_64
     - run: sudo make depend
     - run: sudo make -j$(nproc)
     - run: sudo make install
