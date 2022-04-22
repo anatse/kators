@@ -1,0 +1,8 @@
+/target
+/.idea
+/.vscode
+/src
+*.iml
+/.git
+.gitignore
+.dockerignore
