@@ -4,5 +4,6 @@
 /src
 *.iml
 /.git
+/my_test_db
 .gitignore
 .dockerignore

@@ -8,9 +8,9 @@ use crate::d_gui::server_info::ServerInfo;
 use crate::d_gui::topic_info::TopicInfo;
 use crate::d_gui::tree::TreeNode;
 use crate::kafka::{AdminCommand, KafkaServer};
-use eframe::egui::{CentralPanel, CtxRef};
-use eframe::epi::Frame;
-use eframe::{egui, epi};
+use eframe::egui::{CentralPanel, Context};
+use eframe::{App, Frame};
+use eframe::{egui};
 use log::info;
 use sled::Tree as DbTree;
 use std::rc::Rc;
@@ -67,8 +67,8 @@ impl KatorApp {
     }
 }
 
-impl epi::App for KatorApp {
-    fn update(&mut self, ctx: &CtxRef, _frame: &Frame) {
+impl App for KatorApp {
+    fn update(&mut self, ctx: &Context, _frame: &mut Frame) {
         if self.servers.is_empty() {
             self.reload_servers();
         }
@@ -205,9 +205,9 @@ impl epi::App for KatorApp {
         }
     }
 
-    fn name(&self) -> &str {
-        "Kator App"
-    }
+    // fn name(&self) -> &str {
+    //     "Kator App"
+    // }
 }
 
 impl KatorApp {
